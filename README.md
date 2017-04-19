@@ -1,6 +1,8 @@
 # WithRetries
 
-Just another DSL gem to surround your code with retry blocks.
+Just another DSL gem to surround your code with retry blocks. I use it with ActiveSupport
+to retry stuff, but you can use it with every piece of code that might, or might not raise
+an error that can magically resolve itself.
 
 ## Installation
 
@@ -55,4 +57,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
