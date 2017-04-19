@@ -26,6 +26,7 @@ Without any options:
 
 ```ruby
 require "net/http"
+include PatientlyTry
 
 patiently_try do
   Net::HTTP.get(URI("http://google.com"))
@@ -43,6 +44,7 @@ You can use the following options:
 
 ```ruby
 require "net/http"
+include PatientlyTry
 
 patiently_try retries: 2, wait: 1, catch: [Timeout::Error, Errno::ECONNREFUSED] do
   Net::HTTP.get(URI("http://10.0.0.0"))
