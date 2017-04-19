@@ -1,14 +1,14 @@
 require "spec_helper"
 
-describe WithRetries do
+describe PatientlyTry do
   it "has a version number" do
-    expect(WithRetries::VERSION).not_to be nil
+    expect(PatientlyTry::VERSION).not_to be nil
   end
 
   it "will retry" do
     tries = 0
 
-    with_retries logging: false do
+    patiently_try logging: false do
       tries += 1
       raise StandardError if tries == 1
     end

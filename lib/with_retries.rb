@@ -1,7 +1,7 @@
-require "with_retries/version"
+require "patiently_try/version"
 
-module WithRetries
-  def with_retries(opts = {})
+module PatientlyTry
+  def patiently_try(opts = {})
     retries      = opts[:retries] || 100
     wait         = opts[:wait] || 0
     catch_errors = opts[:catch] || StandardError

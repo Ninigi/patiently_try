@@ -1,4 +1,4 @@
-# WithRetries
+# PatientlyTry
 
 Just another DSL gem to surround your code with retry blocks. I use it with ActiveSupport
 to retry stuff, but you can use it with every piece of code that might, or might not raise
@@ -9,7 +9,7 @@ an error that can magically resolve itself.
 Add this line to your application"s Gemfile:
 
 ```ruby
-gem "with_retries"
+gem "patiently_try"
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install with_retries
+    $ gem install patiently_try
 
 ## Usage
 
@@ -27,7 +27,7 @@ Without any options:
 ```ruby
 require "net/http"
 
-with_retries do
+patiently_try do
   Net::HTTP.get(URI("http://google.com"))
 end
 ```
@@ -44,14 +44,14 @@ You can use the following options:
 ```ruby
 require "net/http"
 
-with_retries retries: 2, wait: 1, catch: [Timeout::Error, Errno::ECONNREFUSED] do
+patiently_try retries: 2, wait: 1, catch: [Timeout::Error, Errno::ECONNREFUSED] do
   Net::HTTP.get(URI("http://10.0.0.0"))
 end
 ```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/Ninigi/with_retries. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Ninigi/patiently_try. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 To open a pull request:
 
