@@ -1,8 +1,6 @@
 # WithRetries
 
-Welcome to your new gem! In this directory, you"ll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/with_retries`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Just another DSL gem to surround your code with retry blocks.
 
 ## Installation
 
@@ -22,13 +20,32 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Without any options:
 
-## Development
+```ruby
+require "net/http"
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+with_retries do
+  Net::HTTP.get(URI("http://google.com"))
+end
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+I would recommend to keep the retried code block as small as possible, to avoid unintentional retries.
+
+You can use the following options:
+
+* `retries: 100` - The number of retries you want to attempt before giving up and reraising the error.
+* `wait: 0` - How long you want to wait before retrying (in seconds)
+* `catch: [StandardError]` - If you want only specific errors to be caught (value can be an array or a single error).
+* `logging: true` - If you do not want any output, set this to false.
+
+```ruby
+require "net/http"
+
+with_retries retries: 2, wait: 1, catch: [Timeout::Error, Errno::ECONNREFUSED] do
+  Net::HTTP.get(URI("http://10.0.0.0"))
+end
+```
 
 ## Contributing
 
