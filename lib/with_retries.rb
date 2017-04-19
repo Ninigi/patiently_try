@@ -10,7 +10,7 @@ module WithRetries
 
     begin
       yield
-    rescue catch_errors => e
+    rescue *(Array(catch_errors)) => e
       try += 1
       puts "Failed with: #{e.inspect}" if logging
 
