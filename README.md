@@ -1,6 +1,6 @@
 # PatientlyTry
 
-Just another DSL gem to surround your code with retry blocks. I use it with ActiveSupport
+Just another DSL gem to surround your code with retry blocks. I use it with ActiveResource
 to retry stuff, but you can use it with every piece of code that might, or might not raise
 an error that can magically resolve itself.
 
@@ -38,7 +38,7 @@ I would recommend to keep the retried code block as small as possible, to avoid 
 You can use the following options:
 
 * `retries: 100` - The number of retries you want to attempt before giving up and reraising the error.
-* `wait: 0` - How long you want to wait before retrying (in seconds)
+* `wait: 0` - How long you want to wait between retries (in seconds)
 * `catch: [StandardError]` - If you want only specific errors to be caught (value can be an array or a single error).
 * `logging: true` - If you do not want any output, set this to false.
 
