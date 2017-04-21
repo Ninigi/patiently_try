@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/patiently_try.svg)](https://badge.fury.io/rb/patiently_try)
+
 # PatientlyTry
 
 Just another DSL gem to surround your code with retry blocks. I use it with ActiveResource
