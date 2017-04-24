@@ -1,4 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/patiently_try.svg)](https://badge.fury.io/rb/patiently_try)
+[![Build Status](https://travis-ci.org/Ninigi/patiently_try.svg?branch=master)](https://travis-ci.org/Ninigi/patiently_try)
 
 # PatientlyTry
 
