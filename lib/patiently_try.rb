@@ -11,12 +11,12 @@ module PatientlyTry
     begin
       yield
     rescue *(Array(catch_errors)) => e
+      puts "Failed (#{try}/#{retries}) with: #{e.inspect}" if logging
       try += 1
-      puts "Failed with: #{e.inspect}" if logging
 
       raise e if try >= retries
 
-      puts "Retrying (#{try}/#{retries})"
+      puts "Retrying (#{try}/#{retries})" if logging
       sleep wait if wait && wait > 0
 
       retry
