@@ -57,7 +57,8 @@ patiently_try retries: 2, wait: 1, catch: [Timeout::Error, Errno::ECONNREFUSED] 
 end
 ```
 
-The `:catch` and `:raise_if_caught` option work in conjunction can be used as a "retry everything BUT these" function, by not setting the catch option (which in that case defaults to `StandardError`)
+The `:catch` and `:raise_if_caught` can be used together to limit the amount of errors that will be retried.
+If only `:raise_if_caught` is set, it will retry every `StandardError` except the ones specified.
 
 ```ruby
 patiently_try raise_if_caught: [ArgumentError] do
