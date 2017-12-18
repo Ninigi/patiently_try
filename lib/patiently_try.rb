@@ -14,14 +14,14 @@ module PatientlyTry
     rescue *(catch_errors) => e
       try += 1
 
-      _log_error if logging
+      _log_error(e) if logging
 
       if try >= retries || _rescued_but_excluded?(e, excluded_errors)
-        _log_backtrace if logging
+        _log_backtrace(e) if logging
         raise e
       end
 
-      _log_retry if logging
+      _log_retry(e) if logging
 
       sleep wait if wait && wait > 0
 
