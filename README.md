@@ -38,11 +38,14 @@ end
 
 I would recommend to keep the retried code block as small as possible, to avoid unintentional retries.
 
-You can use the following options:
+## Options
+
+The following options are available:
 
 * `retries: 100` - The number of retries you want to attempt before giving up and reraising the error.
 * `wait: 0` - How long you want to wait between retries (in seconds).
 * `catch: [StandardError]` - If you want only specific errors to be caught (value can be an array or a single error).
+* `raise_if_caught: []` - If you want to exclude an error from being caught through inheritance.
 * `logging: true` - If you do not want any output, set this to false.
 
 ```ruby
@@ -51,6 +54,18 @@ include PatientlyTry
 
 patiently_try retries: 2, wait: 1, catch: [Timeout::Error, Errno::ECONNREFUSED] do
   Net::HTTP.get(URI("http://10.0.0.0"))
+end
+```
+
+The `:catch` and `:raise_if_caught` option work in conjunction can be used as a "retry everything BUT these" function, by not setting the catch option (which in that case defaults to `StandardError`)
+
+```ruby
+patiently_try raise_if_caught: [ArgumentError] do
+  # This will trigger retries, since NoMethodError is a StandardError
+  raise NoMethodError
+
+  # This will not trigger a retry and fail on first try
+  raise StandardError
 end
 ```
 
