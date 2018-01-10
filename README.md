@@ -1,5 +1,7 @@
 [![Gem Version](https://badge.fury.io/rb/patiently_try.svg)](https://badge.fury.io/rb/patiently_try)
 [![Build Status](https://travis-ci.org/Ninigi/patiently_try.svg?branch=master)](https://travis-ci.org/Ninigi/patiently_try)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
 
 # PatientlyTry
 
