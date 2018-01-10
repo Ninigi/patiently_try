@@ -10,22 +10,41 @@ module PatientlyTry
     rescue *(opts[:catch]) => e
       try += 1
 
-      _log_error(e) if opts[:logging]
-
-      if _exceeded_retries?(try, opts[:retries]) || _rescued_but_excluded?(e, opts[:raise_if_caught])
-        _log_backtrace(e) if opts[:logging]
-        raise e
-      end
-
-      _log_retry(e) if opts[:logging]
+      _rescue_or_raise(e, try, opts)
 
       _wait(opts[:wait])
-
       retry
     end
   end
 
   private
+
+  def _rescue_or_raise(e, try, opts)
+    if opts[:logging]
+      _rescue_or_raise_with_logging(e, try, opts)
+    else
+      _rescue_or_raise_without_logging(e, try, opts)
+    end
+  end
+
+  def _rescue_or_raise_with_logging(e, try, opts)
+    _log_error(e) if opts[:logging]
+
+    if _should_raise?(e, try, opts)
+      _log_backtrace(e) if opts[:logging]
+      raise e
+    end
+
+    _log_retry(e) if opts[:logging]
+  end
+
+  def _rescue_or_raise_without_logging(e, try, opts)
+    raise e if _should_raise?(e, try, opts)
+  end
+
+  def _should_raise?(e, try, opts)
+    _exceeded_retries?(try, opts[:retries]) || _rescued_but_excluded?(e, opts[:raise_if_caught])
+  end
 
   def _parse_opts(opts)
     {
