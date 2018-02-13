@@ -35,7 +35,7 @@ module PatientlyTry
       raise e
     end
 
-    _log_retry(e) if opts[:logging]
+    _log_retry(try, opts[:retries]) if opts[:logging]
   end
 
   def _rescue_or_raise_without_logging(e, try, opts)
@@ -64,7 +64,7 @@ module PatientlyTry
     try >= retries
   end
 
-  def _log_retry
+  def _log_retry(try, retries)
     puts "Retrying (#{try}/#{retries})"
   end
 
